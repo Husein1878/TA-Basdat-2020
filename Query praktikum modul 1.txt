@@ -1,0 +1,112 @@
+>> BUAT TABLESPACE
+
+	CREATE TABLESPACE TokoLaptop
+	datafile 'E:\File_ku\ITATS\Matkul\Semester 4\Basis Data\Praktikum\TokoLaptop.dbf'
+ 	size 30M;
+
+>> BUAT USER
+
+	CREATE USER nashirudin_06818
+	IDENTIFIED BY 123
+	DEFAULT TABLESPACE TokoLaptop
+	QUOTA 30M ON TokoLaptop;
+
+>> beri hak akses pada user
+
+	grant all privileges to nashirudin_06818;
+
+>> buat table pegawai
+
+	create table Pegawai
+	(
+	Id_pegawai	INTEGER		not null,
+	Nama_pegawai	varchar2(15),
+	Tanggal_lahir	date,
+	Alamat		varchar2(50),
+	Kode_pos	number(7),
+	No_telp		number(12),
+	constraint PK_pegawai primary key (Id_pegawai)
+	);
+
+>> buat table pelanggan
+
+	create table Pelanggan
+	(
+	Id_pelanggan	INTEGER		not null,
+	Nama_pelanggan	varchar2(15),
+	Tanggal_lahir	date,
+	Alamat		varchar2(50),
+	Kode_pos	number(7),
+	No_telp		number(12),
+	constraint PK_pelanggan primary key (Id_pelanggan)
+	);
+
+>> buat table kategori
+
+	create table kategori
+	(
+	Id_kategori	INTEGER		not null,
+	Nama_kategori	varchar2(16),
+	Deskripsi	varchar2(20),
+	constraint PK_kategori primary key (Id_kategori)
+	);
+
+>> buat table produk
+
+	create table produk
+	(
+	Id_produk	INTEGER		not null,
+	Id_kategori	INTEGER,
+	Nama_produk	varchar2(50),
+	Harga_satuan	number(9),
+	Stok_produk	number(3),
+	constraint PK_produk primary key (Id_produk),
+	constraint FK_kategori FOREIGN KEY (Id_kategori)
+	REFERENCES kategori (Id_kategori)
+	);
+
+>> buat table transaksi
+
+	create table transaksi
+	(
+	Id_transaksi	INTEGER		not null,
+	Id_pelanggan	INTEGER,
+	Id_pegawai	INTEGER,
+	Tgl_pembelian	date,
+	Harga_total	number(9),
+	constraint PK_transaksi primary key (Id_transaksi)
+	);
+
+>> buat table detail transaksi
+	
+	create table Detail_transaksi
+	(
+	Id_produk	INTEGER		not null,
+	Id_transaksi	INTEGER,
+	jumlah		number(3)
+	);
+
+>> buat relasi antar table menggunakan alter
+
+	alter table transaksi
+	add constraint FK_Id_pelanggan foreign key (Id_pelanggan)
+	references pelanggan (Id_pelanggan)
+	add constraint FK_Id_pegawai foreign key (Id_pegawai)
+	references pegawai (Id_pegawai);
+
+>> menerapkan sequence
+
+	create sequence seq_produk
+	minvalue 1
+	maxvalue 9999
+	start with 1
+	increment by 1
+	cache 20;
+
+>> mengubah nama field
+
+	alter table pegawai rename column Nama_pegawai to Nama_pegawai_06818;
+
+
+
+	

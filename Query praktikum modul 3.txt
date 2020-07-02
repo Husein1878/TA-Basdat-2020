@@ -1,0 +1,82 @@
+insert 5 data pada setiap table
+
+pada table pegawai
+
+>> insert all
+into pegawai (Id_pegawai, Nama_pegawai, Tanggal_lahir, alamat, kode_pos, no_telp) values (6, 'Marta', to_date('06/07/1999','dd/mm/yyyy'), 'Lamongan', 65244, 085123123122)
+into pegawai (Id_pegawai, Nama_pegawai, Tanggal_lahir, alamat, kode_pos, no_telp) values (7, 'Hendrik', to_date('11/04/1997','dd/mm/yyyy'), 'Lamongan', 65243, 081889776565)
+into pegawai (Id_pegawai, Nama_pegawai, Tanggal_lahir, alamat, kode_pos, no_telp) values (8, 'Izzud', to_date('14/02/2014','dd/mm/yyyy'), 'Lamongan', 65244, 089134124244)
+into pegawai (Id_pegawai, Nama_pegawai, Tanggal_lahir, alamat, kode_pos, no_telp) values (9, 'Iqbal', to_date('10/05/2000','dd/mm/yyyy'), 'Lamongan', 65244, 089134124244)
+into pegawai (Id_pegawai, Nama_pegawai, Tanggal_lahir, alamat, kode_pos, no_telp) values (10, 'Erma', to_date('08/08/1999','dd/mm/yyyy'), 'Lamongan', 65244, 089134124244)
+select 1 from dual;
+
+pada table pelanggan
+
+>> insert all
+into pelanggan (Id_pelanggan, Nama_pelanggan, Tanggal_lahir, alamat, kode_pos, no_telp) values (6, 'Danang', to_date('22/07/1998','dd/mm/yyyy'), 'Tuban', 62433, 085768977989)
+into pelanggan (Id_pelanggan, Nama_pelanggan, Tanggal_lahir, alamat, kode_pos, no_telp) values (7, 'Ria', to_date('08/08/2000','dd/mm/yyyy'), 'Lamongan', 65246, 081779076886)
+into pelanggan (Id_pelanggan, Nama_pelanggan, Tanggal_lahir, alamat, kode_pos, no_telp) values (8, 'Agung', to_date('09/11/1998','dd/mm/yyyy'), 'Bandung', 69877, 089867543323)
+into pelanggan (Id_pelanggan, Nama_pelanggan, Tanggal_lahir, alamat, kode_pos, no_telp) values (9, 'Hendra', to_date('08/10/1999','dd/mm/yyyy'), 'Bandung', 69866, 085768995343)
+into pelanggan (Id_pelanggan, Nama_pelanggan, Tanggal_lahir, alamat, kode_pos, no_telp) values (10, 'Aris', to_date('10/09/1997','dd/mm/yyyy'), 'Jakarta', 11233, 082433547685)
+select 1 from dual;
+
+pada table kategori
+
+>> insert all
+into kategori (Id_kategori, Nama_kategori, Deskripsi) values (6, 'CPU', 06)
+into kategori (Id_kategori, Nama_kategori, Deskripsi) values (7, 'MOUSE', 07)
+into kategori (Id_kategori, Nama_kategori, Deskripsi) values (8, 'Access Point', 08)
+into kategori (Id_kategori, Nama_kategori, Deskripsi) values (9, 'HDD', 09)
+into kategori (Id_kategori, Nama_kategori, Deskripsi) values (10, 'Flashdisk', 010)
+select 1 from dual;
+
+pada table produk
+
+>> insert all
+into produk (Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values (6,6, 'Sunrise', 1500000, 40)
+into produk (Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values (7,7, 'Logitech', 450000, 50)
+into produk (Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values (8,8, 'TpLink', 700000, 30)
+into produk (Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values (9,9, 'WD', 1000000, 30)
+into produk (Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values (10,10, 'Kingstone', 100000, 60)
+select 1 from dual;
+
+
+pada table transaksi
+
+>> insert all
+into transaksi (Id_transaksi, Id_pelanggan, Id_pegawai, Tgl_pembelian, Harga_total) values (6,6,6, to_date('11/05/2020','dd/mm/yyyy'), 3000000)
+into transaksi (Id_transaksi, Id_pelanggan, Id_pegawai, Tgl_pembelian, Harga_total) values (7,7,7, to_date('12/05/2020','dd/mm/yyyy'), 1350000)
+into transaksi (Id_transaksi, Id_pelanggan, Id_pegawai, Tgl_pembelian, Harga_total) values (8,8,8, to_date('13/05/2020','dd/mm/yyyy'), 1400000)
+into transaksi (Id_transaksi, Id_pelanggan, Id_pegawai, Tgl_pembelian, Harga_total) values (9,9,9, to_date('14/05/2020','dd/mm/yyyy'), 5000000)
+into transaksi (Id_transaksi, Id_pelanggan, Id_pegawai, Tgl_pembelian, Harga_total) values (10,10,10, to_date('15/05/2020','dd/mm/yyyy'), 1000000)
+select 1 from dual;
+
+pada table detail_transaksi
+
+>> insert all
+into detail_transaksi (Id_produk, Id_transaksi, Jumlah) values (6,6,2)
+into detail_transaksi (Id_produk, Id_transaksi, Jumlah) values (7,7,3)
+into detail_transaksi (Id_produk, Id_transaksi, Jumlah) values (8,8,2)
+into detail_transaksi (Id_produk, Id_transaksi, Jumlah) values (9,9,5)
+into detail_transaksi (Id_produk, Id_transaksi, Jumlah) values (10,10,10)
+select 1 from dual;
+
+
+
+Subquery max dan min
+
+>> select max(jumlah) as transaksi_terbanyak, min(jumlah) as transaksi_terkecil from detail_transaksi;
+
+count 1 klausa 2 operator
+
+>> 
+
+SUM
+
+>> select id_transaksi, sum(jumlah) as total_transaksi from detail_transaksi where id_transaksi = 10 group by id_transaksi;
+
+AVERAGE
+
+>> select avg(jumlah) as rata2_transaksi from detail_transaksi;
+
+

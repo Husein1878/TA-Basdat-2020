@@ -1,0 +1,100 @@
+single insert tabel pegawai
+
+>> insert into pegawai (Id_pegawai, Nama_pegawai, Tanggal_lahir, Alamat, Kode_pos, No_telp) values (1, 'Husein', to_date('15/08/1999','dd/mm/yyyy'), 'Lamongan', 65244, 085658916097);
+>> insert into pegawai (Id_pegawai, Nama_pegawai, Tanggal_lahir, alamat, kode_pos, no_telp) values (2, 'Nashir', to_date('08/08/1999','dd/mm/yyyy'), 'Lamongan', 65244, 085658916921);
+
+multiple insert
+
+>> insert all
+into pegawai (Id_pegawai, Nama_pegawai, Tanggal_lahir, alamat, kode_pos, no_telp) values (3, 'Diva', to_date('05/04/1998','dd/mm/yyyy'), 'Surabaya', 63223, 085768990223)
+into pegawai (Id_pegawai, Nama_pegawai, Tanggal_lahir, alamat, kode_pos, no_telp) values (4, 'Dicky', to_date('11/07/1998','dd/mm/yyyy'), 'Sidoarjo', 62443, 081234567890)
+into pegawai (Id_pegawai, Nama_pegawai, Tanggal_lahir, alamat, kode_pos, no_telp) values (5, 'Nurul', to_date('20/02/1999','dd/mm/yyyy'), 'Gresik', 62466, 089867543678)
+select 1 from dual;
+
+
+Table pelanggan
+
+>> insert into pelanggan (Id_pelanggan, Nama_pelanggan, Tanggal_lahir, alamat, kode_pos, no_telp) values (1, 'Bahar', to_date('30/03/1999','dd/mm/yyyy'), 'Solo', 65244, 081422111233);
+>> insert into pelanggan (Id_pelanggan, Nama_pelanggan, Tanggal_lahir, alamat, kode_pos, no_telp) values (2, 'Syifa', to_date('10/09/1999','dd/mm/yyyy'), 'Jogja', 65244, 085658990771);
+
+
+>> insert all
+into pelanggan (Id_pelanggan, Nama_pelanggan, Tanggal_lahir, alamat, kode_pos, no_telp) values (3, 'Arum', to_date('08/02/1997','dd/mm/yyyy'), 'Bandung', 63243, 085768995423)
+into pelanggan (Id_pelanggan, Nama_pelanggan, Tanggal_lahir, alamat, kode_pos, no_telp) values (4, 'Ida', to_date('21/04/1999','dd/mm/yyyy'), 'Jakarta', 62463, 081234567670)
+into pelanggan (Id_pelanggan, Nama_pelanggan, Tanggal_lahir, alamat, kode_pos, no_telp) values (5, 'Defa', to_date('19/02/1999','dd/mm/yyyy'), 'Sampit', 62486, 089867543778)
+select 1 from dual;
+
+
+table kategori
+
+>> insert into kategori (Id_kategori, Nama_kategori, Deskripsi) values (1, 'Laptop', 01);
+>> insert into kategori (Id_kategori, Nama_kategori, Deskripsi) values (2, 'Printer', 02);
+
+>> insert all
+into kategori (Id_kategori, Nama_kategori, Deskripsi) values (3, 'Monitor', 03)
+into kategori (Id_kategori, Nama_kategori, Deskripsi) values (4, 'UPS', 04)
+into kategori (Id_kategori, Nama_kategori, Deskripsi) values (5, 'CPU', 05)
+select 1 from dual;
+
+
+table produk
+
+>> insert into produk (Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values (1,1, 'ASUS', 5000000, 20);
+>> insert into produk (Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values (2,2, 'EPSON', 2500000, 15);
+
+>> insert all
+into produk (Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values (3,3, 'LG', 900000, 30)
+into produk (Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values (4,4, 'APC UPS', 1250000, 20)
+into produk (Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values (5,5, 'MSI', 4500000, 10)
+select 1 from dual;
+
+
+
+tabel transaksi
+
+>> insert into transaksi (Id_transaksi, Id_pelanggan, Id_pegawai, Tgl_pembelian, Harga_total) values (1,1,1, to_date('20/03/2020','dd/mm/yyyy'), 10000000);
+>> insert into transaksi (Id_transaksi, Id_pelanggan, Id_pegawai, Tgl_pembelian, Harga_total) values (2,2,2, to_date('21/03/2020','dd/mm/yyyy'), 7500000);
+
+>> insert all
+into transaksi (Id_transaksi, Id_pelanggan, Id_pegawai, Tgl_pembelian, Harga_total) values (3,3,3, to_date('22/03/2020','dd/mm/yyyy'), 1800000)
+into transaksi (Id_transaksi, Id_pelanggan, Id_pegawai, Tgl_pembelian, Harga_total) values (4,4,4, to_date('23/03/2020','dd/mm/yyyy'), 1250000)
+into transaksi (Id_transaksi, Id_pelanggan, Id_pegawai, Tgl_pembelian, Harga_total) values (5,5,5, to_date('24/03/2020','dd/mm/yyyy'), 9000000)
+select 1 from dual;
+
+
+tabel detail_transaksi
+
+>> insert into detail_transaksi (Id_produk, Id_transaksi, Jumlah) values (1,1,2);
+>> insert into detail_transaksi (Id_produk, Id_transaksi, Jumlah) values (2,2,3);
+
+
+>> insert all
+into detail_transaksi (Id_produk, Id_transaksi, Jumlah) values (3,3,2)
+into detail_transaksi (Id_produk, Id_transaksi, Jumlah) values (4,4,1)
+into detail_transaksi (Id_produk, Id_transaksi, Jumlah) values (5,5,2)
+select 1 from dual;
+
+
+insert dengan sequences 
+
+>> insert into produk
+(Id_produk, Id_kategori, Nama_produk, Harga_satuan, Stok_produk) values
+(Id_produk.nextval, 1, 'Acer', '4500000', 50);
+
+
+
+
+update data pada table
+
+>> update kategori set nama_kategori = 'Keyboard' where id_kategori = 5;
+
+menerapkan like
+
+>> select nama_pegawai, alamat from pegawai where Nama_pegawai like ‘D%’;
+
+menerapkan operator AND OR NOT
+
+>> select *from pelanggan where alamat = ‘Jakarta’ and Id_pelanggan <5 or kode_pos = 62463;
+	
+
+
