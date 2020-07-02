@@ -1,0 +1,139 @@
+
+>> BUAT TABLESPACE
+
+	CREATE TABLESPACE BengkelLaptop
+	datafile 'E:\File_ku\ITATS\Matkul\Semester 4\Basis Data\Praktikum\bengkellaptop.dbf'
+ 	size 30M;
+
+>> BUAT USER
+
+	CREATE USER husein_06818
+	IDENTIFIED BY 123
+	DEFAULT TABLESPACE BengkelLaptop
+	QUOTA 30M ON sistemjual;
+
+>> Memberikan hak akses pada user
+
+	GRANT ALL PRIVILEGES TO husein_06818;
+
+>> buat table pegawai
+
+	create table pegawai_06818
+	(
+	Id_pegawai	INTEGER		not null,
+	Nama_depan	varchar2(15),
+	Nama_belakang	varchar2(15),
+	Tanggal_lahir	date,
+	Alamat		varchar2(50),
+	Kode_pos	number(7),
+	No_telp		number(12),
+	constraint PK_pegawai primary key (Id_pegawai)
+	);
+
+>> buat table pelanggan
+
+	create table pelanggan_06818
+	(
+	Id_pelanggan	INTEGER		not null,
+	Nama_depan	varchar2(15),
+	Nama_belakang	varchar2(15),
+	Tanggal_lahir	date,
+	Alamat		varchar2(50),
+	Kode_pos	number(7),
+	No_telp		number(12),
+	constraint PK_pelanggan primary key (Id_pelanggan)
+	);
+
+>> buat table kurir
+
+	create table kurir_06818
+	(
+	Id_kurir	INTEGER		not null,
+	Nama_perusahaan	VARCHAR2(16),
+	No_telp		number(12),
+	constraint PK_kurir primary key (Id_kurir)
+	);
+
+>> buat table pemasok
+
+	create table pemasok_06818
+	(
+	Id_pemasok	INTEGER	 	not null,
+	Nama_perusahaan	varchar2(15),
+	Alamat		varchar2(50),
+	Kode_pos	number(7),
+	No_telp		number(12),
+	constraint PK_pemasok primary key (Id_pemasok)
+	);
+
+>> buat table kategori
+
+	create table kategori_06818
+	(
+	Id_kategori	INTEGER		not null,
+	Nama_kategori	varchar2(16),
+	Deskripsi	varchar2(20),
+	constraint PK_kategori primary key (Id_kategori)
+	);
+
+>> buat table produk
+
+	create table produk_06818
+	(
+	Id_produk	INTEGER		not null,
+	Id_pemasok	INTEGER,
+	Id_kategori	INTEGER,
+	Nama_produk	varchar2(50),
+	Harga_satuan	number(9),
+	Stok_produk	number(3),
+	constraint PK_produk primary key (Id_produk),
+	constraint FK_pemasok FOREIGN KEY (Id_pemasok)
+	REFERENCES pemasok_06818 (Id_pemasok),
+	constraint FK_kategori FOREIGN KEY (Id_kategori)
+	REFERENCES kategori_06818 (Id_kategori)
+	);
+
+>> buat table pemesanan
+	
+	create table pemesanan_06818
+	(
+	Id_pemesanan	INTEGER		not null,
+	Id_pelanggan	INTEGER,
+	Id_pegawai	INTEGER,
+	Id_kurir	INTEGER,
+	Tanggal_pemesanan 	date,
+	Tanggal_pengiriman 	date,
+	Alamat_pengiriman	varchar2(50),
+	Harga_total	number(9),
+	constraint PK_pemesanan primary key (Id_pemesanan)
+	);
+
+>> menambahkan foreign key pada table pemesanan
+	
+	alter table pemesanan_06818
+	add constraint FK_Id_pelanggan FOREIGN KEY (Id_pelanggan)
+	references pelanggan_06818 (Id_pelanggan)
+	add constraint FK_Id_pegawai FOREIGN KEY (Id_pegawai)
+	references pegawai_06818 (Id_pegawai)
+	add constraint FK_Id_kurir FOREIGN KEY (Id_kurir)
+	references kurir_06818 (Id_kurir);
+
+>> buat table detail pemesanan
+
+	create table detail_Pemesanan_06818
+	(
+	Id_produk	INTEGER not null,
+	Id_pemesanan	INTEGER,
+	jumlah		number(3),
+	Diskon		float(4)
+	);
+
+>> menambahkan foriegn key pada table detail pemesanan
+	
+	alter table detail_pemesanan_06818
+	add constraint FK_Id_produk FOREIGN KEY (Id_produk)
+	references produk_06818 (Id_Produk)
+	add constraint FK_Id_pemesanan FOREIGN KEY (Id_pemesanan)
+	references pemesanan_06818 (Id_pemesanan);
+
+ 	   
